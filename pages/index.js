@@ -1,10 +1,12 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import React, { useState, useEffect } from 'react';
+import { getAuth } from 'firebase/auth';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
+import { GoogleAuthProvider } from 'firebase/auth';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,6 +24,8 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+const provider = new GoogleAuthProvider();
 
 export default function Home() {
   useEffect(() => {}, []);
