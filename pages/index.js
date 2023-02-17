@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
+import React, { useState, useEffect } from 'react';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
@@ -21,10 +22,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
 export default function Home() {
-  useEffect(() => {});
+  useEffect(() => {}, []);
 
   return (
     <div className={styles.container}>
@@ -33,7 +33,7 @@ export default function Home() {
       </Head>
       <header className={styles.header}></header>
       <main className={styles.main}>
-        <h1>Hello</h1>
+        <h1>Rota Boemia</h1>
       </main>
 
       <footer className={styles.footer}></footer>
