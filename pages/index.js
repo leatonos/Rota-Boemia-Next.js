@@ -8,7 +8,9 @@ export default function Home() {
         <title>Rota Boemia</title>
       </Head>
 
-      <main className={styles.main}></main>
+      <main className={styles.main}>
+        <h1>Hello</h1>
+      </main>
 
       <footer className={styles.footer}></footer>
     </div>
