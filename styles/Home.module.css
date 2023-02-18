@@ -4,6 +4,15 @@
   background-color: black;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainLogo {
+  width: 100%;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;

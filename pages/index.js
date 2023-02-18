@@ -1,12 +1,12 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import React, { useState, useEffect } from 'react';
-import { getAuth } from 'firebase/auth';
 
-// Import the functions you need from the SDKs you need
+// Firebase imports
 import { initializeApp } from 'firebase/app';
-import { getAnalytics } from 'firebase/analytics';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,12 +22,40 @@ const firebaseConfig = {
   measurementId: 'G-S7RMDX3PCN',
 };
 
+//Images
+const rotaBoemiaLogo =
+  'https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/rotaboemia-logo.png';
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
+//Google Login Provider
 const provider = new GoogleAuthProvider();
 
 export default function Home() {
+  const auth = getAuth();
+
+  async function googleLogin() {
+    await signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+  }
+
   useEffect(() => {}, []);
 
   return (
@@ -35,11 +63,14 @@ export default function Home() {
       <Head>
         <title>Rota Boemia</title>
       </Head>
-      <header className={styles.header}></header>
+      {/* <header className={styles.header}></header> */}
       <main className={styles.main}>
-        <h1>Rota Boemia</h1>
+        <img className={styles.mainLogo} src={rotaBoemiaLogo} />
+        <button onClick={googleLogin}>Login with google</button>
+        <Link href="./allbars">
+          <button>Next Page</button>
+        </Link>
       </main>
-
       <footer className={styles.footer}></footer>
     </div>
   );
