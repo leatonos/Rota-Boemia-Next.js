@@ -1,16 +1,12 @@
-.header {
-  width: 100%;
-  height: 50px;
-  background-color: black;
-}
-
 .main {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .mainLogo {
   width: 100%;
+  max-width: 350px;
 }
 
 @media (max-width: 600px) {

@@ -1,0 +1,25 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+  background-color: black;
+}
+
+.headerLogo {
+  width: 100px;
+}
+
+.menuIcon {
+  width: 15px;
+}
+
+.headerLogoContainer {
+  padding: 5px;
+}
+
+.mobileMenuContainer {
+  padding: 15px;
+}
