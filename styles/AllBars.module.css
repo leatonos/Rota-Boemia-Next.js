@@ -2,10 +2,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 50px;
 }
 
 .barTemplateContainer {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
   padding: 5px;
 }
 
@@ -34,10 +38,16 @@
 
 .barDescriptionContainer {
   display: flex;
+  height: 50%;
   flex-direction: column;
+  justify-content: center;
   flex: 2;
   padding: 5px;
-  justify-content: center;
+}
+
+.barTextContainer {
+  flex: 3;
+  align-self: flex-start;
 }
 
 .barButtonContainer {

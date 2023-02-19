@@ -41,6 +41,7 @@ export default function AllBars() {
       let finalBarList = [];
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id);
         let bar = {};
         bar = doc.data();
         bar.id = doc.id;
@@ -67,13 +68,23 @@ export default function AllBars() {
           <div className={styles.ratingBar}></div>
         </div>
         <div className={styles.barDescriptionContainer}>
-          <h3 className={styles.barName}>Bar Name</h3>
-          <p className={styles.barDescriptionText}>{props.shortDescription}</p>
+          <div className={styles.barTextContainer}>
+            <h3 className={styles.barName}>{props.barName}</h3>
+            <p className={styles.barDescriptionText}>
+              {props.shortDescription}
+            </p>
+          </div>
           <div className={styles.barButtonContainer}>
-            <Link href="./allbars" className={styles.barButton}>
+            <Link
+              href={{
+                pathname: '/bar',
+                query: { barId: props.id },
+              }}
+              className={styles.barButton}
+            >
               <button className={styles.readMoreButton}>Read more</button>
             </Link>
-            <Link href="./allbars" className={styles.barButton}>
+            <Link href="./map" className={styles.barButton}>
               <button className={styles.mapButton}>Map</button>
             </Link>
           </div>
@@ -86,6 +97,7 @@ export default function AllBars() {
     return (
       <BarTemplate
         key={bar.id}
+        id={bar.id}
         barName={bar.barName}
         shortDescription={bar.shortDescription}
         longDescription={bar.longDescription}

@@ -39,7 +39,7 @@ const provider = new GoogleAuthProvider();
 export default function Header() {
   const [menu, setMenu] = useState(styles.mobileMenuContainerHidden);
 
-  const auth = getAuth();
+  const auth = getAuth(app);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -93,7 +93,6 @@ export default function Header() {
           <li className={styles.menuLink}>
             <Link href={'../profile'}>Profile</Link>
           </li>
-
           <li className={styles.menuLink} onClick={logOff}>
             Logout
           </li>

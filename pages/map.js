@@ -1,19 +1,15 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
-import styles from '../styles/Profile.module.css';
+import styles from '../styles/AllBars.module.css';
 import React, { useState, useEffect } from 'react';
 import Header from './components/header.js';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
-import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  onAuthStateChanged,
-} from 'firebase/auth';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -30,25 +26,26 @@ const firebaseConfig = {
   measurementId: 'G-S7RMDX3PCN',
 };
 
-//Images
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-//Google Login Provider
-const provider = new GoogleAuthProvider();
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
 
-export default function Profile() {
-  const auth = getAuth(app);
+export default function Map() {
+  const [barList, setBarList] = useState([]);
+
+  useEffect(() => {}, []);
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>Rota Boemia - Profile</title>
+        <title>Rota Boemia - Map</title>
       </Head>
       <Header />
       <main className={styles.main}>
-        <h1>{auth.currentUser.displayName}'s Profile</h1>
+        <h1>Map</h1>
       </main>
+      <footer className={styles.footer}></footer>
     </div>
   );
 }
