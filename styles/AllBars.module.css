@@ -1,0 +1,59 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.barTemplateContainer {
+  display: flex;
+  padding: 5px;
+}
+
+.barMiniImage {
+  width: 150px;
+  height: 150px;
+  align-self: center;
+  border-radius: 7px;
+}
+
+.ratingBar {
+  display: block;
+  width: 100px;
+  height: 20px;
+  background-color: goldenrod;
+  margin-top: 2px;
+}
+
+.barImageContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 5px;
+}
+
+.barDescriptionContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  padding: 5px;
+  justify-content: center;
+}
+
+.barButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Texts styles */
+.barName {
+  margin: 0;
+}
+
+.barDescriptionText {
+  margin: 0;
+}
+
+.barRatingText {
+  margin: 0;
+}

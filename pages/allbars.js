@@ -1,19 +1,15 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
-import styles from '../styles/Home.module.css';
+import styles from '../styles/AllBars.module.css';
 import React, { useState, useEffect } from 'react';
 import Header from './components/header.js';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
-import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  onAuthStateChanged,
-} from 'firebase/auth';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -30,43 +26,75 @@ const firebaseConfig = {
   measurementId: 'G-S7RMDX3PCN',
 };
 
-//Images
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-//Google Login Provider
-const provider = new GoogleAuthProvider();
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
 
 export default function AllBars() {
-  const auth = getAuth();
+  const [barList, setBarList] = useState([]);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;
-        console.log(user);
-      } else {
-        // User is signed out
-        console.log('user not logged');
-        Router.push('/');
-      }
-    });
+    const getAllBars = async () => {
+      const querySnapshot = await getDocs(collection(db, 'Bars'));
+
+      let finalBarList = [];
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        let bar = {};
+        bar = doc.data();
+        bar.id = doc.id;
+        finalBarList.push(bar);
+      });
+
+      setBarList(finalBarList);
+    };
+
+    getAllBars();
   }, []);
 
-  function logOff() {
-    console.log('logoff hapened');
-    auth.signOut();
+  function BarTemplate(props) {
+    return (
+      <div className={styles.barTemplateContainer}>
+        <div className={styles.barImageContainer}>
+          <img className={styles.barMiniImage} src={props.photoURL} />
+          <div className={styles.ratingContainer}>
+            <h4 className={styles.barRatingText}>
+              Ratings: {props.comments.length}
+            </h4>
+          </div>
+          <div className={styles.ratingBar}></div>
+          <div className={styles.ratingBar}></div>
+        </div>
+        <div className={styles.barDescriptionContainer}>
+          <h3 className={styles.barName}>Bar Name</h3>
+          <p className={styles.barDescriptionText}>{props.shortDescription}</p>
+          <div className={styles.barButtonContainer}>
+            <Link href="./allbars" className={styles.barButton}>
+              <button className={styles.readMoreButton}>Read more</button>
+            </Link>
+            <Link href="./allbars" className={styles.barButton}>
+              <button className={styles.mapButton}>Map</button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
   }
 
-  /*
-
-  <Link href="./">
-          <button>Go back</button>
-        </Link>
-  
-  */
+  const HTMLBarList = barList.map((bar) => {
+    return (
+      <BarTemplate
+        key={bar.id}
+        barName={bar.barName}
+        shortDescription={bar.shortDescription}
+        longDescription={bar.longDescription}
+        photoURL={bar.photoURL}
+        comments={bar.comments}
+        address={bar.address}
+      />
+    );
+  });
 
   return (
     <div className={styles.container}>
@@ -76,8 +104,7 @@ export default function AllBars() {
       <Header />
       <main className={styles.main}>
         <h1>All Bars</h1>
-        <button onClick={logOff}>Logoff</button>
-        <p>{process.env.TEST}</p>
+        <div className={styles.allBarsContainer}>{HTMLBarList}</div>
       </main>
       <footer className={styles.footer}></footer>
     </div>

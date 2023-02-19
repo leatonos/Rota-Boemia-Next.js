@@ -1,5 +1,6 @@
 .header {
   display: flex;
+  z-index: 2;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -12,6 +13,12 @@
   width: 100px;
 }
 
+.linkList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 .menuIcon {
   width: 15px;
 }
@@ -20,6 +27,53 @@
   padding: 5px;
 }
 
-.mobileMenuContainer {
+.mobileMenuIconContainer {
   padding: 15px;
+}
+
+.mobileMenuContainer {
+  position: fixed;
+  width: 100%;
+  background-color: black;
+  top: 50px;
+  z-index: 1;
+  animation-name: openMenu;
+  animation-duration: 0.8s;
+}
+
+/* The animation code */
+@keyframes openMenu {
+  from {
+    top: -150px;
+  }
+  to {
+    top: 50px;
+  }
+}
+
+.mobileMenuContainerHidden {
+  position: fixed;
+  width: 100%;
+  background-color: black;
+  top: -150px;
+  z-index: 1;
+  animation-name: closeMenu;
+  animation-duration: 0.8s;
+}
+
+/* The animation code */
+@keyframes closeMenu {
+  from {
+    top: 50px;
+  }
+  to {
+    top: -150px;
+  }
+}
+
+.menuLink {
+  color: white;
+  text-align: center;
+  padding: 5px;
+  height: 40px;
 }

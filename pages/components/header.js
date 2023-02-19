@@ -20,47 +20,85 @@ import {
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: process.env.APIKEY,
-  authDomain: process.env.AUTHDOMAIN,
-  projectId: process.env.PROJECTID,
-  storageBucket: process.env.STORAGEBUCKET,
-  messagingSenderId: process.env.MESSAGINGSENDERID,
-  appId: process.env.APPID,
-  measurementId: process.env.MEASUREMENTID,
+  apiKey: 'AIzaSyBHpAxjsJW5ZmLZiJfClkwUh9TvzDPCvZs',
+  authDomain: 'rota-boemia-375808.firebaseapp.com',
+  projectId: 'rota-boemia-375808',
+  storageBucket: 'rota-boemia-375808.appspot.com',
+  messagingSenderId: '713402840177',
+  appId: '1:713402840177:web:ac28b6091148a3f78657d0',
+  measurementId: 'G-S7RMDX3PCN',
 };
 
-export default function Header() {
-  /*
-  useEffect(() => {
-    const auth = getAuth();
+//Images
 
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+//Google Login Provider
+const provider = new GoogleAuthProvider();
+
+export default function Header() {
+  const [menu, setMenu] = useState(styles.mobileMenuContainerHidden);
+
+  const auth = getAuth();
+
+  useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
+        console.log(user);
       } else {
         // User is signed out
-        console.log('user not logged');
         Router.push('/');
       }
     });
   }, []);
-*/
+
+  function logOff() {
+    console.log('logoff hapened');
+    auth.signOut();
+  }
+
+  function menuToggle() {
+    if (menu == styles.mobileMenuContainer) {
+      setMenu(styles.mobileMenuContainerHidden);
+    } else {
+      setMenu(styles.mobileMenuContainer);
+    }
+  }
+
   return (
-    <header className={styles.header}>
-      <div className={styles.headerLogoContainer}>
-        <img
-          className={styles.headerLogo}
-          src="https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/reduced_logo_white.png"
-        />
-      </div>
-      <div className={styles.mobileMenuContainer}>
-        <img
-          className={styles.menuIcon}
-          src="https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/white_menu_thin.png"
-        />
-      </div>
-    </header>
+    <>
+      <header className={styles.header}>
+        <div className={styles.headerLogoContainer}>
+          <img
+            className={styles.headerLogo}
+            src="https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/reduced_logo_white.png"
+          />
+        </div>
+        <div className={styles.mobileMenuIconContainer}>
+          <img
+            onClick={menuToggle}
+            className={styles.menuIcon}
+            src="https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/white_menu_thin.png"
+          />
+        </div>
+      </header>
+      <nav className={menu}>
+        <ul className={styles.linkList}>
+          <li className={styles.menuLink}>
+            <Link href={'../allbars'}>Home</Link>
+          </li>
+          <li className={styles.menuLink}>
+            <Link href={'../profile'}>Profile</Link>
+          </li>
+
+          <li className={styles.menuLink} onClick={logOff}>
+            Logout
+          </li>
+        </ul>
+      </nav>
+    </>
   );
 }
