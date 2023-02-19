@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import Router from 'next/router';
+import { Router, useRouter } from 'next/router';
 import styles from '../styles/Bar.module.css';
 import React, { useState, useEffect } from 'react';
 import Header from './components/header.js';
@@ -39,7 +39,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export default function Bar() {
-  const barId = Router.query.barId;
+  const barId = useRouter().query.barId;
   const [barInfo, setBarInfo] = useState({});
 
   useEffect(() => {
