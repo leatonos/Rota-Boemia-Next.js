@@ -40,6 +40,12 @@ const provider = new GoogleAuthProvider();
 export default function Profile() {
   const auth = getAuth(app);
 
+  let userName = auth.currentUser.displayName;
+
+  if (userName == null) {
+    userName = 'Someone';
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -47,7 +53,7 @@ export default function Profile() {
       </Head>
       <Header />
       <main className={styles.main}>
-        <h1>'s Profile</h1>
+        <h1>{userName}'s Profile</h1>
       </main>
     </div>
   );
