@@ -47,7 +47,7 @@ export default function Profile() {
       </Head>
       <Header />
       <main className={styles.main}>
-        <h1>{auth.currentUser.displayName}'s Profile</h1>
+        <h1>'s Profile</h1>
       </main>
     </div>
   );
