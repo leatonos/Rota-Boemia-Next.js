@@ -40,7 +40,7 @@ const db = getFirestore(app);
 
 export default function Bar() {
   const barId = Router.query.barId;
-  const [barInfo, setBarInfo] = useState();
+  const [barInfo, setBarInfo] = useState({});
 
   useEffect(() => {
     const docRef = doc(db, 'Bars', barId);
