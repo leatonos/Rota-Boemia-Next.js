@@ -40,11 +40,14 @@ const provider = new GoogleAuthProvider();
 export default function Profile() {
   const auth = getAuth(app);
 
-  let userName = auth.currentUser.displayName;
+  const [userName,setUserName] = useState('User Name')
 
-  if (userName == null) {
-    userName = 'Someone';
-  }
+  useEffect(()=>{
+    if (auth.currentUser != null) {
+      setUserName(auth.currentUser.displayName)
+    }
+  },[])
+  
 
   return (
     <div className={styles.container}>
