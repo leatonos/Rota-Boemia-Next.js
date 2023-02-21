@@ -44,7 +44,7 @@ export default function Profile() {
 
   useEffect(()=>{
     if (auth.currentUser != null) {
-      setUserName(auth.currentUser.displayName)
+      
     }
   },[])
   
