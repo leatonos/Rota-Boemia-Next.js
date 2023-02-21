@@ -44,6 +44,7 @@ export default function Profile() {
 
   useEffect(()=>{
     if (auth.currentUser != null) {
+      //I really need this to work
       setUserName(auth.currentUser.displayName)
     }
   },[])
