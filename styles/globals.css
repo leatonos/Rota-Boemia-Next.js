@@ -1,4 +1,9 @@
-@import url('https://pedrobaptista.com/rotaboemia/styles/boemia-fonts.css');
+
+
+@font-face {
+  font-family: Big-Noodle;
+  src: url(../fonts/big_noodle_titling.ttf);
+}
 
 html,
 body {
