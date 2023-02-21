@@ -1,0 +1,10 @@
+//Colors
+const yellow = "#FCD257"
+const red = "#801A12"
+const black = "#221F1C"
+const lightGrey = '#80807F'
+
+//Coins and Stars
+
+const goldStar = '#FFC000'
+const greenCoin = '#887C48'

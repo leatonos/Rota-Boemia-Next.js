@@ -11,11 +11,7 @@ import { getAnalytics } from 'firebase/analytics';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { getFirestore } from 'firebase/firestore';
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+//Firebase Config
 const firebaseConfig = {
   apiKey: 'AIzaSyBHpAxjsJW5ZmLZiJfClkwUh9TvzDPCvZs',
   authDomain: 'rota-boemia-375808.firebaseapp.com',
@@ -30,6 +26,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
+
 
 export default function AllBars() {
   const [barList, setBarList] = useState([]);
@@ -55,6 +52,54 @@ export default function AllBars() {
   }, []);
 
   function BarTemplate(props) {
+
+    //Coins and stars Images
+    const invertedStars = 'https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/stars/invertedStars.png'
+    const invertedCoins = 'https://github.com/leatonos/Rota-Boemia-Next.js/blob/main/images/coins/inverted-coins-01.png?raw=true'
+
+    //Calculate how many stars a place have
+    const  numberOfStars = () =>{
+      let totalStars = 0
+      const numberOfComments = props.comments.length
+     
+      //Lets get all the stars of all the comments
+      for(let comment of props.comments){
+        totalStars += comment.stars
+      } 
+      //Then divide by the number of comments this will be the result
+      return totalStars/numberOfComments
+    }
+
+    //Calculate how many coins a place have
+    const  numberOfCoins = () =>{
+      let totalCoins = 0
+      const numberOfComments = props.comments.length
+     
+      //Lets get all the stars of all the comments
+      for(let comment of props.comments){
+        totalCoins += comment.price
+      } 
+      //Then divide by the number of comments this will be the result
+      return totalCoins/numberOfComments
+    }
+
+    const coinPorcentage = numberOfCoins()*20
+    const starPorcentage = numberOfStars()*20
+
+    
+    const starsStyle ={
+      background: `linear-gradient(90deg, #FFC000 ${starPorcentage}%, white ${starPorcentage}%)`,
+      width: '100px',
+      height: '20px'
+    }
+    
+    const coinsStyle ={
+      background: `linear-gradient(90deg, #887C48 ${coinPorcentage}%, white ${coinPorcentage}%)`,
+      width: '100px',
+      height: '20px'
+    }
+
+
     return (
       <div className={styles.barTemplateContainer}>
         <div className={styles.barImageContainer}>
@@ -64,8 +109,12 @@ export default function AllBars() {
               Ratings: {props.comments.length}
             </h4>
           </div>
-          <div className={styles.ratingBar}></div>
-          <div className={styles.ratingBar}></div>
+          <div style={starsStyle}>
+            <img src={invertedStars} />
+          </div>
+          <div style={coinsStyle}>
+            <img src={invertedCoins} />
+          </div>
         </div>
         <div className={styles.barDescriptionContainer}>
           <div className={styles.barTextContainer}>

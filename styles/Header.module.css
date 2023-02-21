@@ -46,7 +46,7 @@
 /* The animation code */
 @keyframes openMenu {
   from {
-    top: -150px;
+    top: -100px;
   }
   to {
     top: 50px;
@@ -63,13 +63,17 @@
   animation-duration: 0.8s;
 }
 
+.noMenu{
+  display: none;
+}
+
 /* The animation code */
 @keyframes closeMenu {
   from {
     top: 50px;
   }
   to {
-    top: -150px;
+    top: -100px;
   }
 }
 

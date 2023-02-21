@@ -37,7 +37,7 @@ const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 
 export default function Header() {
-  const [menu, setMenu] = useState(styles.mobileMenuContainerHidden);
+  const [menu, setMenu] = useState(styles.noMenu);
 
   const auth = getAuth(app);
 
@@ -62,8 +62,10 @@ export default function Header() {
 
   function menuToggle() {
     if (menu == styles.mobileMenuContainer) {
+      //Closes menu
       setMenu(styles.mobileMenuContainerHidden);
     } else {
+      //Opens menu
       setMenu(styles.mobileMenuContainer);
     }
   }

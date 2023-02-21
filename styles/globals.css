@@ -5,6 +5,11 @@
   src: url(../fonts/big_noodle_titling.ttf);
 }
 
+@font-face {
+  font-family: Roboto;
+  src: url(../fonts/Roboto-Regular.ttf);
+}
+
 html,
 body {
   padding: 0;
@@ -22,8 +27,14 @@ a {
   box-sizing: border-box;
 }
 
-h1,
-h2,
-h3 {
+h1,h2,h3,h4,button {
   font-family: Big-Noodle;
+}
+
+h2,h3,h4{
+  font-weight: 100;
+}
+
+p,a,li,Link{
+  font-family: Roboto;
 }
