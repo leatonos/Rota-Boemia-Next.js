@@ -112,6 +112,10 @@ export default function AllBars() {
     <div className={styles.container}>
       <Head>
         <title>Rota Boemia - All bars</title>
+        <link
+          href="https://pedrobaptista.com/rotaboemia/styles/boemia-fonts.css"
+          rel="stylesheet"
+        />
       </Head>
       <Header />
       <main className={styles.main}>

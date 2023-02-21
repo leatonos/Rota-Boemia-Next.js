@@ -1,3 +1,5 @@
+@import url('https://pedrobaptista.com/rotaboemia/styles/boemia-fonts.css');
+
 .main {
   display: flex;
   flex-direction: column;
@@ -7,9 +9,10 @@
 
 .barTemplateContainer {
   display: flex;
+  height: 230px;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
   padding: 5px;
 }
 
@@ -38,30 +41,37 @@
 
 .barDescriptionContainer {
   display: flex;
-  height: 50%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
-  flex: 2;
   padding: 5px;
+  background-color: blue;
 }
 
 .barTextContainer {
-  flex: 3;
+  flex: 2;
   align-self: flex-start;
 }
 
 .barButtonContainer {
+  flex: 1;
   display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
   justify-content: flex-end;
 }
 
 /* Texts styles */
 .barName {
   margin: 0;
+  font-size: 1.3rem;
+  font-family: 'Big-Noodle';
 }
 
 .barDescriptionText {
   margin: 0;
+  font-size: 0.75rem;
 }
 
 .barRatingText {

@@ -1,3 +1,5 @@
+@import url('https://pedrobaptista.com/rotaboemia/styles/boemia-fonts.css');
+
 html,
 body {
   padding: 0;
@@ -13,4 +15,10 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+  font-family: Big-Noodle;
 }
