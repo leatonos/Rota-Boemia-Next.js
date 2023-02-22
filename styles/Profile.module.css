@@ -4,3 +4,9 @@
   align-items: center;
   margin-top: 50px;
 }
+
+.userPhoto {
+  width: 250;
+  height: 250;
+  border-radius: 200px;
+}

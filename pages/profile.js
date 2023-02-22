@@ -8,12 +8,7 @@ import Header from './components/header.js';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
-import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  onAuthStateChanged,
-} from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -34,21 +29,23 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-//Google Login Provider
-const provider = new GoogleAuthProvider();
 
 export default function Profile() {
   const auth = getAuth(app);
 
-  const [userName,setUserName] = useState('User Name')
+  const defaultPhoto =
+    'https://via.placeholder.com/350?text=User%20photo%20not%20found';
 
-  useEffect(()=>{
+  const [userName, setUserName] = useState('User Name');
+  const [userPhoto, setPhoto] = useState(defaultPhoto);
+
+  useEffect(() => {
     if (auth.currentUser != null) {
-      //I really need this to work
-      setUserName(auth.currentUser.displayName)
+      //Set user's info
+      setUserName(auth.currentUser.displayName);
+      setPhoto(auth.currentUser.photoURL);
     }
-  },[])
-  
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -57,7 +54,8 @@ export default function Profile() {
       </Head>
       <Header />
       <main className={styles.main}>
-        <h1>{userName}'s Profile</h1>
+        <h1>{userName}</h1>
+        <img className={styles.userPhoto} src={userPhoto} />
       </main>
     </div>
   );

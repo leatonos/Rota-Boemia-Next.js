@@ -61,9 +61,82 @@ export default function Bar() {
   }, []);
 
   function CommentSection() {
+    function CommentCreator() {
+      const auth = getAuth(app);
+
+      const defaultPhoto =
+        'https://via.placeholder.com/250?text=User%20photo%20not%20found';
+
+      const [userName, setUserName] = useState('User Name');
+      const [userPhoto, setPhoto] = useState(defaultPhoto);
+
+      useEffect(() => {
+        if (auth.currentUser != null) {
+          //Set user's info
+          setUserName(auth.currentUser.displayName);
+          setPhoto(auth.currentUser.photoURL);
+        }
+      }, []);
+    }
+
+    function Comment(props) {
+      const invertedStars =
+        'https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/stars/invertedStars.png';
+      const invertedCoins =
+        'https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/coins/inverted-coins-01.png';
+
+      const starPorcentage = props.stars * 20;
+      const coinPorcentage = props.coins * 20;
+
+      const starsStyle = {
+        background: `linear-gradient(90deg, #FFC000 ${starPorcentage}%, white ${starPorcentage}%)`,
+        width: '100px',
+        height: '20px',
+      };
+
+      const coinsStyle = {
+        background: `linear-gradient(90deg, #887C48 ${coinPorcentage}%, white ${coinPorcentage}%)`,
+        width: '100px',
+        height: '20px',
+      };
+
+      return (
+        <div className={styles.commentContainer}>
+          <div className={styles.commentUserPhotoContainer}>
+            <img className={styles.commenterPhoto} src={props.photoURL} />
+          </div>
+          <div className={styles.commentTextContainer}>
+            <div className={styles.textContainer}>
+              <h3 className={styles.noMargin}>{props.userName}</h3>
+              <p className={styles.noMargin}>{props.commentText}</p>
+            </div>
+            <div className={styles.ratingContainer}>
+              <div style={starsStyle} className={styles.ratingStars}>
+                <img src={invertedStars} />
+              </div>
+              <div style={coinsStyle} className={styles.ratingCoins}>
+                <img src={invertedCoins} />
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div>
         <h3>Comments</h3>
+        {barInfo.comments.reverse().map((comment) => {
+          return (
+            <Comment
+              userName={comment.userName}
+              commentText={comment.comment}
+              stars={comment.stars}
+              coins={comment.price}
+              photoURL={comment.userPhotoURL}
+            />
+          );
+        })}
       </div>
     );
   }
@@ -74,8 +147,8 @@ export default function Bar() {
         <title>Rota Boemia - {barInfo.barName}</title>
       </Head>
       <Header />
+      <img src={barInfo.photoURL} className={styles.barBigImage} />
       <div className={styles.barInformationContainer}>
-        <img src={barInfo.photoURL} className={styles.barBigImage} />
         <h2 className={styles.subTitleBig}>About the place</h2>
         <p>{barInfo.longDescription}</p>
         <h2 className={styles.subTitleBig}>Location</h2>

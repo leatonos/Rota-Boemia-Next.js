@@ -61,15 +61,15 @@
 }
 
 /* Buttons */
-.readMoreButton{
-  background-color: #80807F;
+.readMoreButton {
+  background-color: #80807f;
   padding: 5px;
   border: 0;
   color: white;
 }
 
-.mapButton{
-  background-color: #801A12;
+.mapButton {
+  background-color: #801a12;
   padding: 5px;
   border: 0;
   color: white;
@@ -94,29 +94,28 @@
 }
 
 /*  Tablet  >= 768px */
-
 @media screen and (min-width: 768px) {
-  .allBarsContainer{
+  .allBarsContainer {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
   }
-  .barTemplateContainer{
-    width:  45%;
-    margin: 20px 10px
+  .barTemplateContainer {
+    width: 45%;
+    margin: 20px 10px;
   }
 }
 
 /* Desktop  >= 992px */
 @media screen and (min-width: 992px) {
-  .allBarsContainer{
+  .allBarsContainer {
     display: flex;
-    width: 70%;
+    width: 80%;
     flex-wrap: wrap;
   }
-  .barTemplateContainer{
+  .barTemplateContainer {
     width: 31%;
+    min-width: 350px;
     padding: 10px;
   }
 }
-

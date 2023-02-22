@@ -12,8 +12,55 @@
 
 .barInformationContainer {
   display: block;
+  padding: 12px;
 }
 
 .subTitleBig {
   display: block;
+}
+
+/* Comment Section */
+.noMargin {
+  margin: 0;
+  padding: 0;
+}
+
+/*Comment*/
+
+.commentContainer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.commentUserPhotoContainer {
+  width: 20%;
+  padding: 10px;
+}
+
+.commenterPhoto {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.commentTextContainer {
+  padding: 5px 10px;
+  width: 80%;
+}
+.commentText {
+  margin: 0;
+}
+
+.ratingContainer {
+  display: flex;
+}
+
+.ratingStars {
+  width: 100px;
+  height: 20px;
+}
+
+.ratingCoins {
+  width: 100px;
+  height: 20px;
 }

@@ -27,7 +27,6 @@ const app = initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 
-
 export default function AllBars() {
   const [barList, setBarList] = useState([]);
 
@@ -52,53 +51,52 @@ export default function AllBars() {
   }, []);
 
   function BarTemplate(props) {
-
     //Coins and stars Images
-    const invertedStars = 'https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/stars/invertedStars.png'
-    const invertedCoins = 'https://github.com/leatonos/Rota-Boemia-Next.js/blob/main/images/coins/inverted-coins-01.png?raw=true'
+    const invertedStars =
+      'https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/stars/invertedStars.png';
+    const invertedCoins =
+      'https://github.com/leatonos/Rota-Boemia-Next.js/blob/main/images/coins/inverted-coins-01.png?raw=true';
 
     //Calculate how many stars a place have
-    const  numberOfStars = () =>{
-      let totalStars = 0
-      const numberOfComments = props.comments.length
-     
+    const numberOfStars = () => {
+      let totalStars = 0;
+      const numberOfComments = props.comments.length;
+
       //Lets get all the stars of all the comments
-      for(let comment of props.comments){
-        totalStars += comment.stars
-      } 
+      for (let comment of props.comments) {
+        totalStars += comment.stars;
+      }
       //Then divide by the number of comments this will be the result
-      return totalStars/numberOfComments
-    }
+      return totalStars / numberOfComments;
+    };
 
     //Calculate how many coins a place have
-    const  numberOfCoins = () =>{
-      let totalCoins = 0
-      const numberOfComments = props.comments.length
-     
+    const numberOfCoins = () => {
+      let totalCoins = 0;
+      const numberOfComments = props.comments.length;
+
       //Lets get all the stars of all the comments
-      for(let comment of props.comments){
-        totalCoins += comment.price
-      } 
+      for (let comment of props.comments) {
+        totalCoins += comment.price;
+      }
       //Then divide by the number of comments this will be the result
-      return totalCoins/numberOfComments
-    }
+      return totalCoins / numberOfComments;
+    };
 
-    const coinPorcentage = numberOfCoins()*20
-    const starPorcentage = numberOfStars()*20
+    const coinPorcentage = numberOfCoins() * 20;
+    const starPorcentage = numberOfStars() * 20;
 
-    
-    const starsStyle ={
+    const starsStyle = {
       background: `linear-gradient(90deg, #FFC000 ${starPorcentage}%, white ${starPorcentage}%)`,
       width: '100px',
-      height: '20px'
-    }
-    
-    const coinsStyle ={
+      height: '20px',
+    };
+
+    const coinsStyle = {
       background: `linear-gradient(90deg, #887C48 ${coinPorcentage}%, white ${coinPorcentage}%)`,
       width: '100px',
-      height: '20px'
-    }
-
+      height: '20px',
+    };
 
     return (
       <div className={styles.barTemplateContainer}>
