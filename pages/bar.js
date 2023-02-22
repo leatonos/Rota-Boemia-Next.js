@@ -5,17 +5,12 @@ import styles from '../styles/Bar.module.css';
 import React, { useState, useEffect } from 'react';
 import Header from './components/header.js';
 
+import GoogleMapReact from 'google-map-react';
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  getDoc,
-  doc,
-} from 'firebase/firestore';
+import { getDoc, doc } from 'firebase/firestore';
 import { getFirestore } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -59,6 +54,23 @@ export default function Bar() {
 
     fetchBarInfo();
   }, []);
+
+  function Map() {
+    const mapCenter = {
+      lat: 10.99835602,
+      lng: 77.01502627,
+    };
+
+    return (
+      <div className={styles.mapContainer}>
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: 'AIzaSyBHpAxjsJW5ZmLZiJfClkwUh9TvzDPCvZs' }}
+          defaultCenter={mapCenter}
+          defaultZoom={11}
+        />
+      </div>
+    );
+  }
 
   function CommentSection() {
     function CommentCreator() {
@@ -153,6 +165,7 @@ export default function Bar() {
         <p>{barInfo.longDescription}</p>
         <h2 className={styles.subTitleBig}>Location</h2>
         <p>{barInfo.address}</p>
+        <Map />
         <CommentSection />
       </div>
     </main>
