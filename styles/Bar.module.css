@@ -25,6 +25,10 @@
   height: 320px;
 }
 
+.pinMarker {
+  width: 20px;
+}
+
 /* Comment Section */
 .noMargin {
   margin: 0;

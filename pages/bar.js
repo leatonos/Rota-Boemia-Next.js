@@ -36,7 +36,7 @@ const db = getFirestore(app);
 export default function Bar() {
   const barId = useRouter().query.barId;
   const [barInfo, setBarInfo] = useState({});
-  const [isLoading, setLoadingState] = useState(true)
+  const [isLoading, setLoadingState] = useState(true);
 
   useEffect(() => {
     const docRef = doc(db, 'Bars', barId);
@@ -46,8 +46,8 @@ export default function Bar() {
 
       if (docSnap.exists()) {
         console.log('Document data:', docSnap.data());
-        setBarInfo(docSnap.data())
-        setLoadingState(false)
+        setBarInfo(docSnap.data());
+        setLoadingState(false);
       } else {
         // doc.data() will be undefined in this case
         console.log('No such document!');
@@ -57,11 +57,12 @@ export default function Bar() {
     fetchBarInfo();
   }, []);
 
-  if(isLoading){
-    return(
-    <div>
-      <p>Loading</p>
-    </div>)
+  if (isLoading) {
+    return (
+      <div>
+        <p>Loading</p>
+      </div>
+    );
   }
 
   function Map() {
@@ -69,15 +70,17 @@ export default function Bar() {
     const [coordinates, setCoordinates] = useState({
       latitude: 0,
       longitude: 0,
+      zoom: 1,
+      showPin: false,
     });
 
     const address = barInfo.address;
 
+    //API request to calculate the coordinates of the address
     useEffect(() => {
       const requestOptions = {
         method: 'GET',
       };
-
       fetch(
         `https://api.geoapify.com/v1/geocode/search?text=${address}&apiKey=8ae9443742364a50a2f6cbb80522fae0`,
         requestOptions
@@ -87,6 +90,8 @@ export default function Bar() {
           setCoordinates({
             latitude: result.features[0].properties.lat,
             longitude: result.features[0].properties.lon,
+            zoom: 15,
+            showPin: true,
           })
         )
         .catch((error) => console.log('error', error));
@@ -97,13 +102,31 @@ export default function Bar() {
       lng: coordinates.longitude,
     };
 
+    const BarLocationMarker = ({ showPin }) => {
+      if (!showPin) {
+        return null;
+      }
+      return (
+        <img
+          className={styles.pinMarker}
+          src={'https://pedrobaptista.com/rotaboemia/images/pinMarker.png'}
+        />
+      );
+    };
+
     return (
       <div className={styles.mapContainer}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyBHpAxjsJW5ZmLZiJfClkwUh9TvzDPCvZs' }}
-          defaultCenter={mapCenter}
-          defaultZoom={15}
-        ></GoogleMapReact>
+          center={mapCenter}
+          zoom={coordinates.zoom}
+        >
+          <BarLocationMarker
+            lat={coordinates.latitude}
+            lng={coordinates.longitude}
+            showPin={coordinates.showPin}
+          />
+        </GoogleMapReact>
       </div>
     );
   }
