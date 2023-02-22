@@ -56,9 +56,36 @@ export default function Bar() {
   }, []);
 
   function Map() {
-    const mapCenter = {
-      lat: 10.99835602,
-      lng: 77.01502627,
+    //Initial Bar coordinates that will be changed later
+    const [coordinates, setCoordinates] = useState({
+      latitude: 0,
+      longitude: 0,
+    });
+
+    const address = barInfo.address;
+
+    useEffect(() => {
+      const requestOptions = {
+        method: 'GET',
+      };
+
+      fetch(
+        `https://api.geoapify.com/v1/geocode/search?text=${address}&apiKey=8ae9443742364a50a2f6cbb80522fae0`,
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((result) =>
+          setCoordinates({
+            latitude: result.features[0].properties.lat,
+            longitude: result.features[0].properties.lon,
+          })
+        )
+        .catch((error) => console.log('error', error));
+    }, []);
+
+    let mapCenter = {
+      lat: coordinates.latitude,
+      lng: coordinates.longitude,
     };
 
     return (
@@ -66,8 +93,8 @@ export default function Bar() {
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyBHpAxjsJW5ZmLZiJfClkwUh9TvzDPCvZs' }}
           defaultCenter={mapCenter}
-          defaultZoom={11}
-        />
+          defaultZoom={15}
+        ></GoogleMapReact>
       </div>
     );
   }
