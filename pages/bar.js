@@ -36,6 +36,7 @@ const db = getFirestore(app);
 export default function Bar() {
   const barId = useRouter().query.barId;
   const [barInfo, setBarInfo] = useState({});
+  const [isLoading, setLoadingState] = useState(true)
 
   useEffect(() => {
     const docRef = doc(db, 'Bars', barId);
@@ -45,7 +46,8 @@ export default function Bar() {
 
       if (docSnap.exists()) {
         console.log('Document data:', docSnap.data());
-        setBarInfo(docSnap.data());
+        setBarInfo(docSnap.data())
+        setLoadingState(false)
       } else {
         // doc.data() will be undefined in this case
         console.log('No such document!');
@@ -54,6 +56,13 @@ export default function Bar() {
 
     fetchBarInfo();
   }, []);
+
+  if(isLoading){
+    return(
+    <div>
+      <p>Loading</p>
+    </div>)
+  }
 
   function Map() {
     //Initial Bar coordinates that will be changed later
