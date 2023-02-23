@@ -63,14 +63,16 @@
 /* Buttons */
 .readMoreButton {
   background-color: #80807f;
-  padding: 5px;
+  font-size: 20px;
+  padding: 10px;
   border: 0;
   color: white;
 }
 
 .mapButton {
   background-color: #801a12;
-  padding: 5px;
+  font-size: 20px;
+  padding: 10px;
   border: 0;
   color: white;
   margin-left: 5px;

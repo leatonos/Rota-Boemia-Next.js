@@ -31,23 +31,25 @@ export default function AllBars() {
   const [barList, setBarList] = useState([]);
 
   useEffect(() => {
-    const getAllBars = async () => {
-      const querySnapshot = await getDocs(collection(db, 'Bars'));
+    try {
+      const getAllBars = async () => {
+        const querySnapshot = await getDocs(collection(db, 'Bars'));
 
-      let finalBarList = [];
-      querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id);
-        let bar = {};
-        bar = doc.data();
-        bar.id = doc.id;
-        finalBarList.push(bar);
-      });
+        let finalBarList = [];
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id);
+          let bar = {};
+          bar = doc.data();
+          bar.id = doc.id;
+          finalBarList.push(bar);
+        });
 
-      setBarList(finalBarList);
-    };
+        setBarList(finalBarList);
+      };
 
-    getAllBars();
+      getAllBars();
+    } catch {}
   }, []);
 
   function BarTemplate(props) {

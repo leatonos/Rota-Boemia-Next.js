@@ -1,5 +1,3 @@
-@import url('https://pedrobaptista.com/rotaboemia/styles/boemia-fonts.css');
-
 .main {
   display: flex;
   flex-direction: column;
@@ -9,6 +7,15 @@
 .mainLogo {
   width: 100%;
   max-width: 350px;
+}
+
+.googleLogin {
+  background-color: #4285f4;
+  border: none;
+  padding: 12px;
+  color: white;
+  font-size: 23px;
+  border-radius: 4px;
 }
 
 @media (max-width: 600px) {
