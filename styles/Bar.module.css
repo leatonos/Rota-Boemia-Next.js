@@ -80,14 +80,14 @@
 .commentCreatorContainer {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  padding: 10px 20px;
+  width: 80%;
+  padding: 10px;
 }
 
 .commentFormContainer {
   display: flex;
-
   width: 100%;
+  padding: 5px 2px;
 }
 
 .ratingItem {

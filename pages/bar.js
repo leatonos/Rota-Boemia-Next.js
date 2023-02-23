@@ -41,7 +41,7 @@ export default function Bar() {
   const router = useRouter();
   const { barId } = router.query;
   const [barInfo, setBarInfo] = useState({});
-  const [barComments, setbarComments] = useState([]);
+  const [barComments, setBarComments] = useState([]);
   const [isLoading, setLoadingState] = useState(true);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function Bar() {
       if (docSnap.exists()) {
         console.log('Document data:', docSnap.data());
         setBarInfo(docSnap.data());
-        setbarComments(docSnap.data().comments);
+        setBarComments(docSnap.data().comments);
         setLoadingState(false);
       } else {
         // doc.data() will be undefined in this case
@@ -100,7 +100,7 @@ export default function Bar() {
           })
         )
         .catch((error) => console.log('error', error));
-    }, []);
+    }, [address]);
 
     let mapCenter = {
       lat: coordinates.latitude,
@@ -156,7 +156,7 @@ export default function Bar() {
 
       const [stars, setStars] = useState(0);
       const [coins, setCoins] = useState(0);
-      const [commentText, setCommentText] = useState('');
+      const [newCommentText, setCommentText] = useState('');
 
       const [starsState, setStarsState] = useState([
         emptyStar,
@@ -179,8 +179,30 @@ export default function Bar() {
         const commentObj = {
           stars: stars,
           price: coins,
-          comment: commentText,
+          comment: newCommentText,
+          userName: auth.currentUser.displayName,
+          userPhotoURL: auth.currentUser.photoURL,
         };
+
+        // Create a reference to the SF doc.
+        const sfDocRef = doc(db, 'Bars', barId);
+
+        try {
+          await runTransaction(db, async (transaction) => {
+            const sfDoc = await transaction.get(sfDocRef);
+            if (!sfDoc.exists()) {
+              throw 'Document does not exist!';
+            }
+
+            let newComments = sfDoc.data().comments;
+            newComments.push(commentObj);
+            setBarComments(newComments);
+            transaction.update(sfDocRef, { comments: newComments });
+          });
+          console.log('Transaction successfully committed!');
+        } catch (e) {
+          console.log('Transaction failed: ', e);
+        }
       }
 
       function EmptyStars() {
