@@ -26,8 +26,7 @@ const app = initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 
-export default (req, res) => {
-  // Open Chrome DevTools to step through the debugger!
-  // debugger;
-  res.status(200).json({ name: 'Hello, world!' });
+export default async (req, res) => {
+  const barId = req.body.barId;
+  res.status(200).json({ barId: barId });
 };

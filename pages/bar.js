@@ -1,12 +1,15 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import styles from '../styles/Bar.module.css';
 import React, { useState, useEffect } from 'react';
 import Header from './components/header.js';
 
+//Map import
 import GoogleMapReact from 'google-map-react';
 
+//Loading Import
+import LoadingScreen from './components/loadingScreen.js';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
@@ -34,14 +37,17 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export default function Bar() {
-  const barId = useRouter().query.barId;
+  const router = useRouter();
+  const { barId } = router.query;
   const [barInfo, setBarInfo] = useState({});
   const [isLoading, setLoadingState] = useState(true);
 
   useEffect(() => {
-    const docRef = doc(db, 'Bars', barId);
-
     const fetchBarInfo = async () => {
+      if (!barId) {
+        return;
+      }
+      const docRef = doc(db, 'Bars', barId);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
@@ -55,14 +61,10 @@ export default function Bar() {
     };
 
     fetchBarInfo();
-  }, []);
+  }, [router]);
 
   if (isLoading) {
-    return (
-      <div>
-        <p>Loading</p>
-      </div>
-    );
+    return <LoadingScreen />;
   }
 
   function Map() {
