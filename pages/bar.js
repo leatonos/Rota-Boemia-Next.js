@@ -351,6 +351,7 @@ export default function Bar() {
         background: `linear-gradient(90deg, #887C48 ${coinPorcentage}%, white ${coinPorcentage}%)`,
         width: '100px',
         height: '20px',
+        marginLeft: '15px',
       };
 
       return (

@@ -70,6 +70,10 @@
   height: 20px;
 }
 
+.ratingStars:nth-child(2) {
+  margin-left: 15px;
+}
+
 .ratingCoins {
   width: 100px;
   height: 20px;

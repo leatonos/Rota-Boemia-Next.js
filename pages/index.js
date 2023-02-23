@@ -85,9 +85,6 @@ export default function Home() {
         <button className={styles.googleLogin} onClick={googleLogin}>
           Login with google
         </button>
-        <Link href="./allbars">
-          <button>Next Page</button>
-        </Link>
       </main>
       <footer className={styles.footer}></footer>
     </div>
