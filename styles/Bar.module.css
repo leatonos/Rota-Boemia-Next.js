@@ -75,8 +75,46 @@
   height: 20px;
 }
 
+/* Comment Creator */
+
+.commentCreatorContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px 20px;
+}
+
+.commentFormContainer {
+  display: flex;
+
+  width: 100%;
+}
+
 .ratingItem {
   width: 15px;
   height: 15px;
   margin: 0px 2.5px;
+}
+
+.inputText {
+  width: 80%;
+  border: 0;
+  padding-bottom: 2px;
+  border-bottom: 1px solid;
+}
+
+.inputText:focus {
+  outline: none;
+  border: 0;
+  border-bottom: 2px solid;
+}
+
+.commentBtn {
+  background-color: #80807f;
+  font-size: 15px;
+  padding: 7px;
+  border: 0;
+  color: white;
+  width: 60px;
+  margin: 0px 10px;
 }

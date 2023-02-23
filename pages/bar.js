@@ -287,8 +287,11 @@ export default function Bar() {
               src={auth.currentUser.photoURL}
             />
           </div>
-          <div className={styles.commentFormContainer}>
-            <form onSubmit={submitComment}>
+          <div className={styles.commentCreatorContainer}>
+            <form
+              className={styles.commentFormContainer}
+              onSubmit={submitComment}
+            >
               <input
                 className={styles.inputText}
                 onChange={(e) => setCommentText(e.target.value)}
