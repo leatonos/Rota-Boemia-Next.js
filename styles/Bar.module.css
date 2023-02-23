@@ -74,3 +74,9 @@
   width: 100px;
   height: 20px;
 }
+
+.ratingItem {
+  width: 15px;
+  height: 15px;
+  margin: 0px 2.5px;
+}
