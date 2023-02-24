@@ -119,8 +119,24 @@ export default function Bar() {
       );
     };
 
+    function addressToLink(address) {
+      const baseAddress = 'https://www.google.com/maps/search/?api=1&query=';
+      let correctURI = '';
+      for (let letter of address) {
+        if (letter === ' ') {
+          correctURI += '+';
+        } else if (letter === ',') {
+          correctURI += '%2C';
+        } else {
+          correctURI += letter;
+        }
+      }
+      return baseAddress + correctURI;
+    }
+
     return (
       <div className={styles.mapContainer}>
+        <p>{barInfo.address}</p>
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyBHpAxjsJW5ZmLZiJfClkwUh9TvzDPCvZs' }}
           center={mapCenter}
@@ -132,6 +148,13 @@ export default function Bar() {
             showPin={coordinates.showPin}
           />
         </GoogleMapReact>
+        <a
+          className={styles.routeBtnContainer}
+          href={addressToLink(barInfo.address)}
+          target="_blank"
+        >
+          <button className={styles.routeBtn}>Route to the bar</button>
+        </a>
       </div>
     );
   }
@@ -183,6 +206,13 @@ export default function Bar() {
           userName: auth.currentUser.displayName,
           userPhotoURL: auth.currentUser.photoURL,
         };
+
+        if (stars == 0 || price == 0 || newCommentText == '') {
+          alert(
+            'You need write a comment, select a number of stars and coins to represent how expensive this place is'
+          );
+          return;
+        }
 
         // Create a reference to the SF doc.
         const sfDocRef = doc(db, 'Bars', barId);
@@ -407,7 +437,6 @@ export default function Bar() {
         <h2 className={styles.subTitleBig}>About the place</h2>
         <p>{barInfo.longDescription}</p>
         <h2 className={styles.subTitleBig}>Location</h2>
-        <p>{barInfo.address}</p>
         <Map />
         <CommentSection />
       </div>
