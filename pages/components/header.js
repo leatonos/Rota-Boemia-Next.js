@@ -74,10 +74,12 @@ export default function Header() {
     <>
       <header className={styles.header}>
         <div className={styles.headerLogoContainer}>
-          <img
-            className={styles.headerLogo}
-            src="https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/reduced_logo_white.png"
-          />
+          <Link href={'../allbars'}>
+            <img
+              className={styles.headerLogo}
+              src="https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/reduced_logo_white.png"
+            />
+          </Link>
         </div>
         <div className={styles.mobileMenuIconContainer}>
           <img
