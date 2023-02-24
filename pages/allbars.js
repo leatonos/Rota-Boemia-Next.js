@@ -98,6 +98,21 @@ export default function AllBars() {
       height: '20px',
     };
 
+    function convertAddressToLink(address) {
+      const baseAddress = 'https://www.google.com/maps/search/?api=1&query=';
+      let correctURI = '';
+      for (let letter of address) {
+        if (letter === ' ') {
+          correctURI += '+';
+        } else if (letter === ',') {
+          correctURI += '%2C';
+        } else {
+          correctURI += letter;
+        }
+      }
+      return baseAddress + correctURI;
+    }
+
     return (
       <div className={styles.barTemplateContainer}>
         <div className={styles.barImageContainer}>
@@ -131,9 +146,13 @@ export default function AllBars() {
             >
               <button className={styles.readMoreButton}>Read more</button>
             </Link>
-            <Link href="./map" className={styles.barButton}>
+            <a
+              href={convertAddressToLink(props.address)}
+              className={styles.barButton}
+              target="_blank"
+            >
               <button className={styles.mapButton}>Map</button>
-            </Link>
+            </a>
           </div>
         </div>
       </div>
