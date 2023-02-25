@@ -136,6 +136,7 @@ export default function Bar() {
 
     return (
       <div className={styles.mapContainer}>
+        <h2 className={styles.subTitleBig}>Location</h2>
         <p>{barInfo.address}</p>
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyBHpAxjsJW5ZmLZiJfClkwUh9TvzDPCvZs' }}
@@ -348,6 +349,7 @@ export default function Bar() {
                 className={styles.inputText}
                 onChange={(e) => setCommentText(e.target.value)}
                 type="text"
+                placeholder={'Comment here'}
               />
               <button className={styles.commentBtn} type="submit">
                 Comment
@@ -408,7 +410,7 @@ export default function Bar() {
     }
 
     return (
-      <div>
+      <div className={styles.commentSectionContainer}>
         <h3>Comments</h3>
         <CommentCreator />
         {barComments.reverse().map((comment) => {
@@ -432,11 +434,15 @@ export default function Bar() {
         <title>Rota Boemia - {barInfo.barName}</title>
       </Head>
       <Header />
-      <img src={barInfo.photoURL} className={styles.barBigImage} />
-      <div className={styles.barInformationContainer}>
-        <h2 className={styles.subTitleBig}>About the place</h2>
-        <p>{barInfo.longDescription}</p>
-        <h2 className={styles.subTitleBig}>Location</h2>
+      <div className={styles.barContainerDesktop}>
+        <h1 class={styles.barNameTitle}>{barInfo.barName}</h1>
+        <div className={styles.desktopImageContainer}>
+          <img src={barInfo.photoURL} className={styles.barBigImage} />
+        </div>
+        <div className={styles.barInformationContainer}>
+          <h2 className={styles.subTitleBig}>About the place</h2>
+          <p>{barInfo.longDescription}</p>
+        </div>
         <Map />
         <CommentSection />
       </div>
