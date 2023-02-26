@@ -208,12 +208,14 @@ export default function Bar() {
           userPhotoURL: auth.currentUser.photoURL,
         };
 
+        /*
         if (stars == 0 || price == 0 || newCommentText == '') {
           alert(
             'You need write a comment, select a number of stars and coins to represent how expensive this place is'
           );
           return;
-        }
+        }else
+        */
 
         // Create a reference to the SF doc.
         const sfDocRef = doc(db, 'Bars', barId);
