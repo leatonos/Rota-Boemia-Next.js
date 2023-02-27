@@ -38,7 +38,7 @@
   width: 100%;
   background-color: black;
   top: 50px;
-  z-index: 0;
+  z-index: 4;
   animation-name: openMenu;
   animation-duration: 0.8s;
 }
@@ -58,12 +58,12 @@
   width: 100%;
   background-color: black;
   top: -150px;
-  z-index: 0;
+  z-index: 4;
   animation-name: closeMenu;
   animation-duration: 0.8s;
 }
 
-.noMenu{
+.noMenu {
   display: none;
 }
 

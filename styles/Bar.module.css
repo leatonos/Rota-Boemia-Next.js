@@ -4,9 +4,15 @@
   flex-direction: column;
 }
 
+.barNameTitle {
+  text-align: center;
+  font-weight: 100;
+  width: 100%;
+}
+
 .barBigImage {
   width: 100%;
-  max-height: 30vh;
+  height: 30vh;
   object-fit: cover;
 }
 
@@ -21,18 +27,48 @@
 
 /* Map Section */
 .mapContainer {
+  display: block;
+  position: relative;
   width: 100%;
   height: 320px;
+  margin-bottom: 150px;
+  padding: 10px;
+}
+
+.pinMarker {
+  width: 20px;
+}
+
+.routeBtnContainer {
+  margin-top: 10px;
+}
+.routeBtn {
+  background-color: #801a12;
+  width: 100%;
+  font-size: 20px;
+  padding: 10px;
+  border: 0;
+  color: white;
+  margin-top: 10px;
 }
 
 /* Comment Section */
+
+.commentSectionContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 10px;
+  width: 100%;
+  align-content: center;
+}
+
 .noMargin {
   margin: 0;
   padding: 0;
 }
 
 /*Comment*/
-
 .commentContainer {
   display: flex;
   width: 100%;
@@ -42,6 +78,7 @@
 .commentUserPhotoContainer {
   width: 20%;
   padding: 10px;
+  max-width: 60px;
 }
 
 .commenterPhoto {
@@ -66,7 +103,88 @@
   height: 20px;
 }
 
+.ratingStars:nth-child(2) {
+  margin-left: 15px;
+}
+
 .ratingCoins {
   width: 100px;
   height: 20px;
+}
+
+/* Comment Creator */
+
+.commentCreatorContainer {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  padding: 10px;
+}
+
+.commentFormContainer {
+  display: flex;
+  width: 100%;
+  padding: 5px 2px;
+}
+
+.ratingItem {
+  width: 15px;
+  height: 15px;
+  margin: 0px 2.5px;
+}
+
+.inputText {
+  width: 80%;
+  border: 0;
+  padding-bottom: 2px;
+  border-bottom: 1px solid;
+}
+
+.inputText:focus {
+  outline: none;
+  border: 0;
+  border-bottom: 2px solid;
+}
+
+.commentBtn {
+  background-color: #80807f;
+  font-size: 15px;
+  padding: 7px;
+  border: 0;
+  color: white;
+  width: 60px;
+  margin: 0px 10px;
+}
+
+/*  Tablet  >= 768px */
+@media screen and (min-width: 768px) {
+}
+
+/* Desktop  >= 992px */
+@media screen and (min-width: 992px) {
+  .barContainerDesktop {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 42px;
+  }
+
+  .desktopImageContainer {
+    width: 50%;
+    height: 450px;
+    padding: 10px;
+  }
+  .commentContainer {
+    width: 60%;
+  }
+
+  .barBigImage {
+    width: 100%;
+    height: 100%;
+    max-height: 450px;
+    object-fit: cover;
+  }
+  .barInformationContainer {
+    width: 50%;
+  }
 }

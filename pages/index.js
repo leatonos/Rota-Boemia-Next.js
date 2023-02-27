@@ -6,7 +6,12 @@ import React, { useState, useEffect } from 'react';
 
 // Firebase imports
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+} from 'firebase/auth';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -41,7 +46,7 @@ export default function Home() {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
-        Router.push('/allbars');
+        //Router.push('/allbars');
       })
       .catch((error) => {
         // Handle Errors here.
@@ -55,7 +60,19 @@ export default function Home() {
       });
   }
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+        Router.push('/allbars');
+      } else {
+        // User is signed out
+        // Nothing Happens
+      }
+    });
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -65,10 +82,9 @@ export default function Home() {
       {/* <header className={styles.header}></header> */}
       <main className={styles.main}>
         <img className={styles.mainLogo} src={rotaBoemiaLogo} />
-        <button onClick={googleLogin}>Login with google</button>
-        <Link href="./allbars">
-          <button>Next Page</button>
-        </Link>
+        <button className={styles.googleLogin} onClick={googleLogin}>
+          Login with google
+        </button>
       </main>
       <footer className={styles.footer}></footer>
     </div>
