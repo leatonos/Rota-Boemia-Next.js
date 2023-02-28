@@ -146,6 +146,17 @@
   border-bottom: 2px solid;
 }
 
+.shareButton{
+  display: flex;
+  align-items: center;
+  background-color: black;
+  padding: 11.2px;
+  font-size: 20px;
+  border: 0;
+  color: white;
+  margin-right: 5px;
+}
+
 .commentBtn {
   background-color: #80807f;
   font-size: 15px;

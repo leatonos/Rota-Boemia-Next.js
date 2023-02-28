@@ -15,8 +15,6 @@ export default function Modal(props) {
 
     const [message,setMessage] = useState("")
 
-    
-
     //BaseLinks
     const websiteLink = 'https://rota-boemia-next-js.vercel.app/bar?barId='
     const barId = props.linkId

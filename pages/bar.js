@@ -1,15 +1,29 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styles from '../styles/Bar.module.css';
 import React, { useState, useEffect } from 'react';
 import Header from './components/header.js';
+import Modal from './components/modal';
+
+//Images
+import emptyCoin from '../public/images/coins/empty-coin.png';
+import fullCoin from '../public/images/coins/full-coin.png';
+import emptyStar from '../public/images/stars/empty-star.png';
+import fullStar from '../public/images/stars/full-star.png';
+
+import invertedStars from '../public/images/stars/invertedStars.png'
+import invertedCoins from '../public/images/coins/inverted-coins-01.png'
+
+import shareIcon from '../public/images/icons/share.svg'
 
 //Map import
 import GoogleMapReact from 'google-map-react';
 
 //Loading Import
 import LoadingScreen from './components/loadingScreen.js';
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
@@ -43,6 +57,7 @@ export default function Bar() {
   const [barInfo, setBarInfo] = useState({});
   const [barComments, setBarComments] = useState([]);
   const [isLoading, setLoadingState] = useState(true);
+  const [modalState,setModalState] = useState(false)
 
   useEffect(() => {
     const fetchBarInfo = async () => {
@@ -68,6 +83,10 @@ export default function Bar() {
 
   if (isLoading) {
     return <LoadingScreen />;
+  }
+
+  function toggleModal(){    
+    setModalState(!modalState)
   }
 
   function Map() {
@@ -163,20 +182,6 @@ export default function Bar() {
   function CommentSection() {
     function CommentCreator() {
       //Images
-      const emptyStar =
-        'https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/stars/empty-star.png';
-
-      const fullStar =
-        'https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/stars/full-star.png';
-
-      const emptyCoin =
-        'https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/coins/empty-coin.png';
-
-      const fullCoin =
-        'https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/coins/full-coin.png';
-
-      const defaultPhoto =
-        'https://via.placeholder.com/250?text=User%20photo%20not%20found';
 
       const [stars, setStars] = useState(0);
       const [coins, setCoins] = useState(0);
@@ -255,30 +260,35 @@ export default function Bar() {
 
         return (
           <div className={styles.ratingStars}>
-            <img
+            <Image
               onClick={() => starClick(1)}
               className={styles.ratingItem}
               src={starsState[0]}
+              alt='rating star number 1'
             />
-            <img
+            <Image
               onClick={() => starClick(2)}
               className={styles.ratingItem}
               src={starsState[1]}
+              alt='rating star number 2'
             />
-            <img
+            <Image
               onClick={() => starClick(3)}
               className={styles.ratingItem}
               src={starsState[2]}
+              alt='rating star number 3'
             />
-            <img
+            <Image
               onClick={() => starClick(4)}
               className={styles.ratingItem}
               src={starsState[3]}
+              alt='rating star number 4'
             />
-            <img
+            <Image
               onClick={() => starClick(5)}
               className={styles.ratingItem}
               src={starsState[4]}
+              alt='rating star number 5'
             />
           </div>
         );
@@ -303,30 +313,35 @@ export default function Bar() {
 
         return (
           <div className={styles.ratingStars}>
-            <img
+            <Image
               onClick={() => coinClick(1)}
               className={styles.ratingItem}
               src={coinState[0]}
+              alt='rating coin number 1'
             />
-            <img
+            <Image
               onClick={() => coinClick(2)}
               className={styles.ratingItem}
               src={coinState[1]}
+              alt='rating coin number 2'
             />
-            <img
+            <Image
               onClick={() => coinClick(3)}
               className={styles.ratingItem}
               src={coinState[2]}
+              alt='rating coin number 3'
             />
-            <img
+            <Image
               onClick={() => coinClick(4)}
               className={styles.ratingItem}
               src={coinState[3]}
+              alt='rating coin number 4'
             />
-            <img
+            <Image
               onClick={() => coinClick(5)}
               className={styles.ratingItem}
               src={coinState[4]}
+              alt='rating coin number 5'
             />
           </div>
         );
@@ -365,10 +380,6 @@ export default function Bar() {
     }
 
     function Comment(props) {
-      const invertedStars =
-        'https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/stars/invertedStars.png';
-      const invertedCoins =
-        'https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/coins/inverted-coins-01.png';
 
       const starPorcentage = props.stars * 20;
       const coinPorcentage = props.coins * 20;
@@ -398,10 +409,10 @@ export default function Bar() {
             </div>
             <div className={styles.ratingContainer}>
               <div style={starsStyle} className={styles.ratingStars}>
-                <img src={invertedStars} />
+                <Image src={invertedStars}  alt={props.stars + 'stars'}/>
               </div>
               <div style={coinsStyle} className={styles.ratingCoins}>
-                <img src={invertedCoins} />
+                <Image src={invertedCoins} alt={props.coins + 'coins'}/>
               </div>
             </div>
           </div>
@@ -434,6 +445,7 @@ export default function Bar() {
         <title>Rota Boemia - {barInfo.barName}</title>
       </Head>
       <Header />
+      <Modal showModal={modalState} closeModal={toggleModal} linkId={barId}/>
       <div className={styles.barContainerDesktop}>
         <h1 class={styles.barNameTitle}>{barInfo.barName}</h1>
         <div className={styles.desktopImageContainer}>
@@ -442,6 +454,9 @@ export default function Bar() {
         <div className={styles.barInformationContainer}>
           <h2 className={styles.subTitleBig}>About the place</h2>
           <p>{barInfo.longDescription}</p>
+          <button onClick={() => toggleModal(barId)} className={styles.shareButton}>
+            <Image alt='Share icon' src={shareIcon} width={20} height={20}/>
+          </button>
         </div>
         <Map />
         <CommentSection />

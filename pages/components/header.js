@@ -2,6 +2,11 @@ import Link from 'next/link';
 import Router from 'next/router';
 import styles from '../../styles/Header.module.css';
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+
+//Images
+import miniLogo from '../../public/images/reduced_logo_white.png'
+import menuIcon from '../../public/images/white_menu_thin.png'
 
 //Firebase Imports
 // Import the functions you need from the SDKs you need
@@ -28,8 +33,6 @@ const firebaseConfig = {
   appId: '1:713402840177:web:ac28b6091148a3f78657d0',
   measurementId: 'G-S7RMDX3PCN',
 };
-
-//Images
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -75,17 +78,19 @@ export default function Header() {
       <header className={styles.header}>
         <div className={styles.headerLogoContainer}>
           <Link href={'../allbars'}>
-            <img
+            <Image
               className={styles.headerLogo}
-              src="https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/reduced_logo_white.png"
+              src={miniLogo}
+              alt='Reduced logo Rota Boemia'
             />
           </Link>
         </div>
         <div className={styles.mobileMenuIconContainer}>
-          <img
+          <Image
             onClick={menuToggle}
             className={styles.menuIcon}
-            src="https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/white_menu_thin.png"
+            src={menuIcon}
+            alt='Menu'
           />
         </div>
       </header>

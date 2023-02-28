@@ -13,6 +13,7 @@
 
 .headerLogo {
   width: 100px;
+  height: 100%;
 }
 
 .linkList {
@@ -23,6 +24,7 @@
 
 .menuIcon {
   width: 15px;
+  height: auto;
 }
 
 .headerLogoContainer {

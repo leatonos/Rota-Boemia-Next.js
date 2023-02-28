@@ -9,6 +9,8 @@ import Image from 'next/image'
 
 //Images
 import shareIcon from '../public/images/icons/share.svg'
+import invertedStars from '../public/images/stars/invertedStars.png'
+import invertedCoins from '../public/images/coins/inverted-coins-01.png'
 
 
 // Import the functions you need from the SDKs you need
@@ -59,12 +61,6 @@ export default function AllBars() {
   }, []);
 
   function BarTemplate(props) {
-    //Coins and stars Images
-    const invertedStars =
-      'https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/stars/invertedStars.png';
-    const invertedCoins =
-      'https://github.com/leatonos/Rota-Boemia-Next.js/blob/main/images/coins/inverted-coins-01.png?raw=true';
-
     //Calculate how many stars a place have
     const numberOfStars = () => {
       let totalStars = 0;
@@ -123,8 +119,6 @@ export default function AllBars() {
 
     return (
       <>
-      
-      
       <div className={styles.barTemplateContainer}>
         <div className={styles.barImageContainer}>
           <img className={styles.barMiniImage} src={props.photoURL} />
@@ -134,10 +128,10 @@ export default function AllBars() {
             </h4>
           </div>
           <div style={starsStyle}>
-            <img src={invertedStars} />
+            <Image src={invertedStars} alt={numberOfStars()+ ' stars'}/>
           </div>
           <div style={coinsStyle}>
-            <img src={invertedCoins} />
+            <Image src={invertedCoins}  alt={numberOfCoins()+ ' price rate'}/>
           </div>
         </div>
         <div className={styles.barDescriptionContainer}>
