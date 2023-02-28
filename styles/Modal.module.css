@@ -1,0 +1,71 @@
+.fullScreenBackground{
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255,0.1);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+
+}
+
+.modalContainer{
+    background-color: white;
+    width: 95%;
+    height: 30%;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 10000;
+    box-shadow: 15px 19px 26px -1px rgba(60,60,60,0.53);
+    animation: modalAppear .5s;
+    animation-timing-function: ease-in;
+}
+
+.modalTitle{
+    text-align: center;
+    margin-bottom:30px ;
+}
+
+.iconImage{
+    width: 35px;
+    height: 35px;
+}
+
+.shareButtonsContainer{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+/*  Tablet  >= 768px */
+@media screen and (min-width: 768px) {
+   
+  }
+  
+/* Desktop  >= 992px */
+@media screen and (min-width: 992px) {
+
+    .modalContainer{
+        background-color: white;
+        width: 40%;
+        height: 30%;
+        padding: 20px;
+        border-radius: 5px;
+    }
+    
+    
+}
+
+
+
+
+/* Animations */
+
+@keyframes modalAppear {
+    0%   {opacity: 0;transform: translate(0px, -18px)}
+    100% {opacity: 1;transform: translate(0px, 0px)}
+  }
+

@@ -61,6 +61,19 @@
 }
 
 /* Buttons */
+
+.shareButton{
+  display: flex;
+  align-items: center;
+  background-color: black;
+  padding: 11.2px;
+  font-size: 20px;
+  border: 0;
+  color: white;
+  margin-right: 5px;
+}
+
+
 .readMoreButton {
   background-color: #80807f;
   font-size: 20px;
@@ -77,6 +90,7 @@
   color: white;
   margin-left: 5px;
 }
+
 
 /* Texts styles */
 .barName {
@@ -103,8 +117,7 @@
     flex-wrap: wrap;
   }
   .barTemplateContainer {
-    width: 45%;
-    margin: 20px 10px;
+    width: 50%;
   }
 }
 
@@ -112,7 +125,7 @@
 @media screen and (min-width: 992px) {
   .allBarsContainer {
     display: flex;
-    width: 80%;
+    width: 90%;
     flex-wrap: wrap;
   }
   .barTemplateContainer {

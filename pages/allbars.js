@@ -4,6 +4,12 @@ import Router from 'next/router';
 import styles from '../styles/AllBars.module.css';
 import React, { useState, useEffect } from 'react';
 import Header from './components/header.js';
+import Modal from './components/modal';
+import Image from 'next/image'
+
+//Images
+import shareIcon from '../public/images/icons/share.svg'
+
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
@@ -29,6 +35,8 @@ const db = getFirestore(app);
 
 export default function AllBars() {
   const [barList, setBarList] = useState([]);
+  const [modalState, setModalState] = useState(false);
+  const [shareId,setShareId] = useState('')
 
   useEffect(() => {
     const getAllBars = async () => {
@@ -114,6 +122,9 @@ export default function AllBars() {
     }
 
     return (
+      <>
+      
+      
       <div className={styles.barTemplateContainer}>
         <div className={styles.barImageContainer}>
           <img className={styles.barMiniImage} src={props.photoURL} />
@@ -137,6 +148,9 @@ export default function AllBars() {
             </p>
           </div>
           <div className={styles.barButtonContainer}>
+          <button onClick={() => toggleModal(props.id)} className={styles.shareButton}>
+            <Image alt='Share icon' src={shareIcon} width={20} height={20}/>
+          </button>
             <Link
               href={{
                 pathname: '/bar',
@@ -156,7 +170,14 @@ export default function AllBars() {
           </div>
         </div>
       </div>
+      </>
     );
+  }
+
+
+  function toggleModal(barId){    
+    setShareId(barId)
+    setModalState(!modalState)
   }
 
   const HTMLBarList = barList.map((bar) => {
@@ -184,6 +205,7 @@ export default function AllBars() {
         />
       </Head>
       <Header />
+      <Modal showModal={modalState} closeModal={toggleModal} linkId={shareId}/>
       <main className={styles.main}>
         <h1>All Bars</h1>
         <div className={styles.allBarsContainer}>{HTMLBarList}</div>
