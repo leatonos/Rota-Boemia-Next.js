@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 import Router from 'next/router';
 import styles from '../styles/Home.module.css';
 import React, { useState, useEffect } from 'react';
@@ -12,6 +13,9 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
 } from 'firebase/auth';
+
+//Images
+import rotaBoemiaLogo from '../public/images/rotaboemia-logo.png'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -27,10 +31,6 @@ const firebaseConfig = {
   appId: '1:713402840177:web:ac28b6091148a3f78657d0',
   measurementId: 'G-S7RMDX3PCN',
 };
-
-//Images
-const rotaBoemiaLogo =
-  'https://raw.githubusercontent.com/leatonos/Rota-Boemia-Next.js/main/images/rotaboemia-logo.png';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -81,7 +81,7 @@ export default function Home() {
       </Head>
       {/* <header className={styles.header}></header> */}
       <main className={styles.main}>
-        <img className={styles.mainLogo} src={rotaBoemiaLogo} />
+        <Image className={styles.mainLogo} src={rotaBoemiaLogo} alt='Rota boemia main logo'  />
         <button className={styles.googleLogin} onClick={googleLogin}>
           Login with google
         </button>
