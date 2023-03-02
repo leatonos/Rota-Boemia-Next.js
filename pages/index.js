@@ -5,6 +5,11 @@ import Router from 'next/router';
 import styles from '../styles/Home.module.css';
 import React, { useState, useEffect } from 'react';
 
+//Images
+import googleLoginBtn from '../public/images/btn_google_signin_dark_normal_web@2x.png'
+//import favicon from '../public/images/favicon.ico'
+
+
 // Firebase imports
 import { initializeApp } from 'firebase/app';
 import {
@@ -79,12 +84,9 @@ export default function Home() {
       <Head>
         <title>Rota Boemia</title>
       </Head>
-      {/* <header className={styles.header}></header> */}
       <main className={styles.main}>
         <Image className={styles.mainLogo} src={rotaBoemiaLogo} alt='Rota boemia main logo'  />
-        <button className={styles.googleLogin} onClick={googleLogin}>
-          Login with google
-        </button>
+        <Image src={googleLoginBtn}  width={230} onClick={googleLogin}/>
       </main>
       <footer className={styles.footer}></footer>
     </div>
