@@ -347,6 +347,11 @@ export default function Bar() {
         );
       }
 
+
+      if(!auth.currentUser){
+        return null;
+      }
+
       return (
         <div className={styles.commentContainer}>
           <div className={styles.commentUserPhotoContainer}>
