@@ -5,9 +5,12 @@ import Router from 'next/router';
 import styles from '../styles/Home.module.css';
 import React, { useState, useEffect } from 'react';
 
+//Lottie Animation
+import { useLottie } from "lottie-react";
+import mainLogoAnimation from "../public/animations/RotaBoemia2.json"
+
 //Images
 import googleLoginBtn from '../public/images/btn_google_signin_dark_normal_web@2x.png'
-//import favicon from '../public/images/favicon.ico'
 
 
 // Firebase imports
@@ -44,6 +47,23 @@ const provider = new GoogleAuthProvider();
 
 export default function Home() {
   const auth = getAuth();
+
+
+
+  function LottieAnimationComponent(){
+
+    const animationOptions = {
+      animationData: mainLogoAnimation,
+      loop: false,
+      style:{
+        height:500
+      }
+    };
+
+    const { View } = useLottie(animationOptions);
+
+    return <>{View}</>;
+  } 
 
   async function googleLogin() {
     await signInWithPopup(auth, provider)
@@ -85,7 +105,10 @@ export default function Home() {
         <title>Rota Boemia</title>
       </Head>
       <main className={styles.main}>
-        <Image className={styles.mainLogo} src={rotaBoemiaLogo} alt='Rota boemia main logo'  />
+        {
+         // <Image className={styles.mainLogo} src={rotaBoemiaLogo} alt='Rota boemia main logo'  />
+        }
+        <LottieAnimationComponent />
         <Image src={googleLoginBtn}  width={230} onClick={googleLogin}/>
       </main>
       <footer className={styles.footer}></footer>
