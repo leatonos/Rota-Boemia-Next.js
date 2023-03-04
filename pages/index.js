@@ -56,7 +56,8 @@ export default function Home() {
       animationData: mainLogoAnimation,
       loop: false,
       style:{
-        height:500
+        height:300,
+        marginBottom:23
       }
     };
 
