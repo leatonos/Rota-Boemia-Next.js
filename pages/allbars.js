@@ -30,7 +30,6 @@ import { getFirestore } from 'firebase/firestore';
   measurementId: process.env.MEASUREMENT_ID,
 };
 
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // Initialize Cloud Firestore and get a reference to the service
@@ -194,10 +193,6 @@ export default function AllBars() {
     <div className={styles.container}>
       <Head>
         <title>Rota Boemia - All bars</title>
-        <link
-          href="https://pedrobaptista.com/rotaboemia/styles/boemia-fonts.css"
-          rel="stylesheet"
-        />
       </Head>
       <Header />
       <Modal showModal={modalState} closeModal={toggleModal} linkId={shareId}/>
