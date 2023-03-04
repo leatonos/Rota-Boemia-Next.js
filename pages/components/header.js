@@ -19,26 +19,27 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: 'AIzaSyBHpAxjsJW5ZmLZiJfClkwUh9TvzDPCvZs',
+  authDomain: 'rota-boemia-375808.firebaseapp.com',
+  projectId: 'rota-boemia-375808',
+  storageBucket: 'rota-boemia-375808.appspot.com',
+  messagingSenderId: '713402840177',
+  appId: '1:713402840177:web:ac28b6091148a3f78657d0',
+  measurementId: 'G-S7RMDX3PCN',
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+//Google Login Provider
+const provider = new GoogleAuthProvider();
 
 export default function Header() {
-
-    //Google Firebase config
-    const firebaseConfig = {
-      apiKey: process.env.API_KEY,
-      authDomain: process.env.AUTH_DOMAIN,
-      projectId: process.env.PROJECT_ID,
-      storageBucket: process.env.STORAGE_BUCKET,
-      messagingSenderId: process.env.MESSAGING_SENDER_ID,
-      appId: process.env.APP_ID,
-      measurementId: process.env.MEASUREMENT_ID,
-    };
-  
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    //Google Login Provider
-    const provider = new GoogleAuthProvider();
-
-
   const [menu, setMenu] = useState(styles.noMenu);
 
   const auth = getAuth(app);
