@@ -50,7 +50,7 @@ export default function Header() {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         const uid = user.uid;
-        console.log(user);
+        //console.log(user);
       } else {
         // User is signed out
         Router.push('/');
@@ -101,6 +101,9 @@ export default function Header() {
           </li>
           <li className={styles.menuLink}>
             <Link href={'../profile'}>Profile</Link>
+          </li>
+          <li className={styles.menuLink}>
+            <Link href={'../about'}>About</Link>
           </li>
           <li className={styles.menuLink} onClick={logOff}>
             Logout

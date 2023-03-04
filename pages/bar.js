@@ -6,17 +6,17 @@ import styles from '../styles/Bar.module.css';
 import React, { useState, useEffect } from 'react';
 import Header from './components/header.js';
 import Modal from './components/modal';
+import ErrorMessage from './components/errorMessage';
 
 //Images
 import emptyCoin from '../public/images/coins/empty-coin.png';
 import fullCoin from '../public/images/coins/full-coin.png';
 import emptyStar from '../public/images/stars/empty-star.png';
 import fullStar from '../public/images/stars/full-star.png';
-
 import invertedStars from '../public/images/stars/invertedStars.png'
 import invertedCoins from '../public/images/coins/inverted-coins-01.png'
-
 import shareIcon from '../public/images/icons/share.svg'
+
 
 //Map import
 import GoogleMapReact from 'google-map-react';
@@ -59,6 +59,8 @@ export default function Bar() {
   const [barComments, setBarComments] = useState([]);
   const [isLoading, setLoadingState] = useState(true);
   const [modalState,setModalState] = useState(false)
+  const [showErrorState,setShowErrorState] = useState(false)
+  const [errorMessage,setErrorMessage] = useState('')
 
   useEffect(() => {
     const fetchBarInfo = async () => {
@@ -88,6 +90,10 @@ export default function Bar() {
 
   function toggleModal(){    
     setModalState(!modalState)
+  }
+
+  function closeErrorMSG(){
+    setShowErrorState(!showErrorState)
   }
 
   function Map() {
@@ -215,9 +221,8 @@ export default function Bar() {
         };
 
         if (stars == 0 || coins == 0 || newCommentText == '') {
-          alert(
-            'You need write a comment, select a number of stars and coins to represent how expensive this place is'
-          );
+          setShowErrorState(true)
+          setErrorMessage('Please make sure to write a comment, select a number of stars and a number of coins for your comment')
           return;
         }
 
@@ -452,6 +457,7 @@ export default function Bar() {
       </Head>
       <Header />
       <Modal showModal={modalState} closeModal={toggleModal} linkId={barId}/>
+      <ErrorMessage showError={showErrorState} closeError={closeErrorMSG} message={errorMessage}  errorTitle={'Attention'}/>
       <div className={styles.barContainerDesktop}>
         <h1 class={styles.barNameTitle}>{barInfo.barName}</h1>
         <div className={styles.desktopImageContainer}>
