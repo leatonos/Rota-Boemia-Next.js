@@ -30,25 +30,31 @@ import rotaBoemiaLogo from '../public/images/rotaboemia-logo.png'
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: 'AIzaSyBHpAxjsJW5ZmLZiJfClkwUh9TvzDPCvZs',
-  authDomain: 'rota-boemia-375808.firebaseapp.com',
-  projectId: 'rota-boemia-375808',
-  storageBucket: 'rota-boemia-375808.appspot.com',
-  messagingSenderId: '713402840177',
-  appId: '1:713402840177:web:ac28b6091148a3f78657d0',
-  measurementId: 'G-S7RMDX3PCN',
-};
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-//Google Login Provider
-const provider = new GoogleAuthProvider();
+
+
 
 export default function Home() {
+
+  
+  const firebaseConfig = {
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    appId: process.env.APP_ID,
+    measurementId: process.env.MEASUREMENT_ID,
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  //Google Login Provider
+  const provider = new GoogleAuthProvider();
+
+
+
   const auth = getAuth();
-
-
 
   function LottieAnimationComponent(){
 
@@ -64,6 +70,9 @@ export default function Home() {
     const { View } = useLottie(animationOptions);
 
     return <>{View}</>;
+
+    
+
   } 
 
   async function googleLogin() {
@@ -87,6 +96,7 @@ export default function Home() {
   }
 
   useEffect(() => {
+    
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
@@ -106,13 +116,11 @@ export default function Home() {
         <title>Rota Boemia</title>
       </Head>
       <main className={styles.main}>
-        {
-         // <Image className={styles.mainLogo} src={rotaBoemiaLogo} alt='Rota boemia main logo'  />
-        }
-        <LottieAnimationComponent />
-        <Image src={googleLoginBtn}  width={230} onClick={googleLogin}/>
+        <h1>Welcome to Rota Boemia</h1>
+        <LottieAnimationComponent className={styles.mainLogo} />
+        <Image src={googleLoginBtn}  width={230} onClick={googleLogin} alt='Google login button'/>
       </main>
-      <footer className={styles.footer}></footer>
+    
     </div>
   );
 }
