@@ -26,7 +26,6 @@ import { getAuth } from 'firebase/auth';
   measurementId: process.env.MEASUREMENT_ID,
 };
 
-//Images
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
