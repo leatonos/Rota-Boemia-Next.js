@@ -35,14 +35,15 @@ import { getAuth } from 'firebase/auth';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: 'AIzaSyBHpAxjsJW5ZmLZiJfClkwUh9TvzDPCvZs',
-  authDomain: 'rota-boemia-375808.firebaseapp.com',
-  projectId: 'rota-boemia-375808',
-  storageBucket: 'rota-boemia-375808.appspot.com',
-  messagingSenderId: '713402840177',
-  appId: '1:713402840177:web:ac28b6091148a3f78657d0',
-  measurementId: 'G-S7RMDX3PCN',
+//Google Firebase config
+ const firebaseConfig = {
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
+  measurementId: process.env.MEASUREMENT_ID,
 };
 
 // Initialize Firebase

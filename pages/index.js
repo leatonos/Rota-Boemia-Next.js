@@ -12,7 +12,6 @@ import mainLogoAnimation from "../public/animations/RotaBoemia2.json"
 //Images
 import googleLoginBtn from '../public/images/btn_google_signin_dark_normal_web@2x.png'
 
-
 // Firebase imports
 import { initializeApp } from 'firebase/app';
 import {
@@ -25,18 +24,9 @@ import {
 //Images
 import rotaBoemiaLogo from '../public/images/rotaboemia-logo.png'
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-
-
-
-
 export default function Home() {
-
   
+  //Google Firebase config
   const firebaseConfig = {
     apiKey: process.env.API_KEY,
     authDomain: process.env.AUTH_DOMAIN,
@@ -51,8 +41,6 @@ export default function Home() {
   const app = initializeApp(firebaseConfig);
   //Google Login Provider
   const provider = new GoogleAuthProvider();
-
-
 
   const auth = getAuth();
 
@@ -96,7 +84,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    
+
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
