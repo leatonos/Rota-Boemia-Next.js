@@ -34,7 +34,7 @@ export default function About() {
           </div>
         </section>
 
-        <section className={styles.aboutSection}>
+        <section className={styles.aboutSectionTec}>
           <article className={styles.textContainerTec}>
           <h2>What tecnologies are used?</h2>
             <p>
@@ -42,6 +42,12 @@ export default function About() {
               For the web version I used Next.js and Firestore database from Firebase and for the mobile vesion I used React Native. I also used the lottie animation package to create some animations and the regular CSS
             </p>
           </article>
+          <div className={styles.imageContainerFull}>
+            <img className={styles.tecIcon} src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-line.svg" />
+            <img className={styles.tecIcon} src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg" />
+            <img className={styles.tecIcon} src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain-wordmark.svg" />
+            <img className={styles.tecIcon} src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain-wordmark.svg" />
+          </div>          
         </section>
       </main>
     </div>

@@ -19,6 +19,26 @@
     height: auto;
 }
 
+/* Tecnology Section*/
+
+.aboutSectionTec{
+    display: flex;
+    flex-direction: column;
+}
+
+.imageContainerFull{
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: space-evenly;
+}
+
+.tecIcon{
+    width: 10%;
+}
+
+
+
 /*  Tablet  >= 768px */
 @media screen and (min-width: 768px) {
    
@@ -46,4 +66,24 @@
         height: auto;
     }
     
+
+    /*Tecnologies*/
+
+    .aboutSectionTec{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .imageContainerFull{
+        display: flex;
+        width: 100%;
+        height: auto;
+        justify-content: space-evenly;
+    }
+    
+    .tecIcon{
+        width: 10%;
+    }
+    
+
   }
