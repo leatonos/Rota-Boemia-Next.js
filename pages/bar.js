@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
+import Router from 'next/router';
 import { useRouter } from 'next/router';
 import styles from '../styles/Bar.module.css';
 import React, { useState, useEffect } from 'react';
@@ -65,6 +66,7 @@ export default function Bar() {
   useEffect(() => {
     const fetchBarInfo = async () => {
       if (!barId) {
+        Router.push('/allbars');
         return;
       }
       const docRef = doc(db, 'Bars', barId);
